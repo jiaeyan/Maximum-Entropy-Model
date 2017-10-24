@@ -12,6 +12,5 @@ class Document():
         self.feature_vector = []
         
     def process_feature(self, data):
-        '''A bag-of-word approach to process raw data, more fancy methods can be applied.
-        '''
+        '''A bag-of-word approach to process raw data, more fancy methods can be applied.'''
         return data.split() 
