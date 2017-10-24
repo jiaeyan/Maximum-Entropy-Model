@@ -13,6 +13,5 @@ class Document():
         
     def process_feature(self, data):
         '''A bag-of-word approach to process raw data, more fancy methods can be applied.
-           Default setting is Multinomial, set() the result if a Bernoulli is preferred. 
         '''
         return data.split() 
