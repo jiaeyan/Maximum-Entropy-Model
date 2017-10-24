@@ -75,11 +75,13 @@ class MaxEnt():
         return False
     
     def posterior(self, label, feature_vector):
+        '''Get the posterior value by the given label and instance, which will be used in the addGradient function.'''
         numerator = np.dot(self.P[self.L[label]], feature_vector)
         denominator = [np.dot(self.P[self.L[l]], feature_vector) for l in self.L]
         return exp(numerator - logsumexp(denominator))
     
     def addGradient(self, instances, lr):
+        '''Compute the observation matrix and expected matrix, perform a subtraction to get the value that the Parameter matrix should decrese.'''
         ob = np.zeros((len(self.L), len(self.V)))
         ex = np.zeros((len(self.L), len(self.V)))
         for inst in instances:
