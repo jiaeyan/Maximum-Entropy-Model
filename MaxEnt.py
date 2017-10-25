@@ -19,8 +19,8 @@ class MaxEnt():
             l.add(inst.label)
             v = v.union(inst.features)
         self.L = {label:i for i, label in enumerate(l)} # a dict to record label and its id
-        self.V = {word:j for j, word in enumerate(v)}   # a dict to record vocab and its id
-        self.P = np.zeros((len(self.L), len(self.V)))   # the parameter matrix
+        self.V = {word:i for i, word in enumerate(v)}   # a dict to record vocab and its id
+        self.P = np.zeros((len(l), len(v)))   # the parameter matrix
         
         for inst in dev + train: # featurization
             inst.feature_vector = self.get_vec(inst.features)      
