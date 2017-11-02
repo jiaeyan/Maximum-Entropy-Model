@@ -83,13 +83,13 @@ class MaxEnt():
     def addGradient(self, instances, lr):
         '''Compute the observation matrix and expected matrix, perform a subtraction to get the value that the Parameter matrix should decrese.'''
         ob = np.zeros((len(self.L), len(self.V)))
-        ex = np.zeros((len(self.L), len(self.V)))
+        ex = np.zeros(ob.shape)
         for inst in instances:
             ob[self.L[inst.label]] += inst.feature_vector # this is the observation value
             for l in self.L:                              # this is the model value
                 ex[self.L[l]] += inst.feature_vector * self.posterior(l, inst.feature_vector)
         self.P += lr * (ob - ex)
                         
-    def classify(self, instance):  # compare with numerator is enough
+    def classify(self, instance):  # compare with numerator without exp is already enough
         instance.feature_vector = self.get_vec(instance.features)
         return max([(np.dot(self.P[self.L[l]], instance.feature_vector), l) for l in self.L])[1]
